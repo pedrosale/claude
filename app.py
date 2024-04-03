@@ -4,6 +4,8 @@ import streamlit as st
 
 load_dotenv()
 
+os.environ["api_key"] = st.secrets["api_key"]
+
 def get_response(user_content): 
     client = anthropic.Anthropic()
     response = client.messages.create(
