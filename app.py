@@ -4,7 +4,7 @@ import streamlit as st
 
 load_dotenv()
 
-os.environ["pedro_key"] = st.secrets["pedro_key"]
+os.environ["api_key"] = st.secrets["api_key"]
 
 def get_response(user_content): 
     client = anthropic.Anthropic()
