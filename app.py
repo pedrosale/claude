@@ -1,14 +1,11 @@
 from dotenv import load_dotenv 
 import anthropic
 import streamlit as st
-import os
 
 load_dotenv()
 
-os.environ["api_key"] = st.secrets["api_key"]
-
 def get_response(user_content): 
-    client = anthropic.Anthropic()
+    client = anthropic.Anthropic(api_key=st.secrets["api_key"])
     response = client.messages.create(
         model="claude-3-opus-20240229",
         max_tokens=1024,
@@ -16,6 +13,7 @@ def get_response(user_content):
         messages=[{"role":"user", "content":user_content}],
     )
     return response.content[0].text
+
 
 st.title("Blog Title Generator")
 user_content = st.text_input("Enter the keyword for blog titles:")
